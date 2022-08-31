@@ -1,0 +1,29 @@
+#container {
+  font-size: 1.6rem;
+  margin-left: 4rem;
+
+  ul {
+    padding: 0;
+  }
+}
+
+.note {
+  p {
+    display: inline-block;
+    margin-right: 2rem;
+  }
+}
+
+#enter {
+  display: block;
+  margin-top: 1em;
+}
+
+.text-input {
+  display: block;
+
+  width: min(500px, 100%);
+  height: 10em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}

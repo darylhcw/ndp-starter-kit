@@ -1,0 +1,28 @@
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+EXPOSE 5000
+
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+COPY "*.csproj" "./DotnetWebAPI/"
+RUN dotnet restore "DotnetWebAPI/DotnetWebAPI.csproj"
+COPY . "./DotnetWebAPI"
+
+WORKDIR "/src/DotnetWebAPI"
+RUN dotnet build "DotnetWebAPI.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "DotnetWebAPI.csproj" -c Release -o /app/publish
+
+FROM base AS final
+# Need to do more work if you want to expose HTTPS on Docker:
+# https://docs.microsoft.com/en-us/aspnet/core/security/docker-https?view=aspnetcore-6.0
+# EXPOSE 5001
+# ENV ASPNETCORE_URLS="http://+:5000;https://+:5001"
+ENV ASPNETCORE_URLS="http://+:5000;"
+
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "DotnetWebAPI.dll"]
