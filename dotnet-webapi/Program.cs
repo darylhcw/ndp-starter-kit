@@ -26,7 +26,8 @@ builder.Services.AddCors(options =>
             } else {
                 policy.WithOrigins("https://localhost:3000",
                                    "http://localhost:3000",
-                                   "http://my-website.com")
+                                   "https://darylhcw.com",
+                                   "https://darylhcw.com/keep-up/")
                                    .AllowAnyMethod()
                                    .AllowAnyHeader();
             }
