@@ -6,13 +6,13 @@
     "start": "next start"
   },
   "dependencies": {
-    "@tanstack/react-query": "^4.2.1",
-    "@tanstack/react-query-devtools": "^4.2.1",
-    "axios": "^0.27.2",
-    "next": "latest",
+    "@tanstack/react-query": "^4.20.4",
+    "@tanstack/react-query-devtools": "^4.20.4",
+    "axios": "^1.2.1",
+    "next": "^13.1.1",
     "normalize.css": "^8.0.1",
-    "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/node": "17.0.42",
