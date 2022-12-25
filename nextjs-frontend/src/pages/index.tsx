@@ -1,8 +1,9 @@
 import styles from './index.module.scss'
 import { useState } from 'react'
 import { useQueryClient, useQuery, useMutation } from '@tanstack/react-query';
-import NotesApi from '@services/notes-service'
-import { Note } from '@services/notes-service'
+import NotesApi from '@services/notes-service';
+import { Note } from '@services/notes-service';
+
 
 // Need id for UI. Real id is gotten from db auto-increment.
 // '-' ensures we never get clashes.
@@ -29,7 +30,9 @@ export default function Home() {
     onError: (error, variable, context) => {
       console.log("Add Note failed for", variable, "reverting...");
       console.log("Error:", error);
-      QueryClient.setQueryData(["notes"], context.previousTodos);
+      if (context?.previousTodos) {
+        QueryClient.setQueryData(["notes"], context.previousTodos);
+      }
     },
 
     onSettled: () => {
@@ -50,7 +53,9 @@ export default function Home() {
     onError: (error, variable, context) => {
       console.log("Delete note failed for", variable, "reverting...");
       console.log("Error:", error);
-      QueryClient.setQueryData(["notes"], context.previousTodos);
+      if (context?.previousTodos) {
+        QueryClient.setQueryData(["notes"], context.previousTodos);
+      }
     },
 
     onSettled: () => {
