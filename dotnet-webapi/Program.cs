@@ -37,8 +37,9 @@ builder.Services.AddCors(options =>
 bool useDockerCString = Environment.GetEnvironmentVariable("IN_DOCKER") == "true";
 
 string notesCString = useDockerCString ? "NotesDockerConnString" : "NotesConnectionString";
+string pgCString = builder.Configuration.GetConnectionString(notesCString) ?? "";
 builder.Services.AddDbContext<NotesDbContext>(
-    options => options.UseNpgsql(builder.Configuration.GetConnectionString(notesCString))
+    options => options.UseNpgsql(pgCString)
 );
 builder.Services.AddScoped<INotesRepository, NotesRepository>();
 
