@@ -1,5 +1,5 @@
 import 'normalize.css/normalize.css'
-import '../styles/globals.scss'
+import '../styles/main.scss'
 import type { AppProps } from 'next/app'
 import React from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
