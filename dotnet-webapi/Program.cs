@@ -71,9 +71,8 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment()) {
     app.UseSwagger();
 	app.UseSwaggerUI();
-    NotesSeeder.AddNotes(app);
 }
-
+NotesSeeder.AddNotes(app);
 
 app.UseHttpsRedirection();
 
